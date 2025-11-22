@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Day Predictor</title>
+    <style>
+        /* Background */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #ff6fd8, #3813c2);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Title */
+.title {
+    color: white;
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 15px;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+/* Card with glass effect */
+.card {
+    width: 320px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+    animation: slideUp 1s ease;
+}
+
+/* Label */
+.label {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Dropdown */
+.dropdown {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Button */
+.btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    color: white;
+    background: #ff007b;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #d60066;
+    transform: scale(1.05);
+}
+
+/* Result text */
+.result {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    animation: fadeIn 0.8s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">🌈 Next Day Predictor</h1>
+
+        <div class="card">
+            <label class="label">Select a Day</label>
+
+            <select id="daySelect" class="dropdown">
+                <option value="">-- Choose a Day --</option>
+                <option>Sunday</option>
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+                <option>Saturday</option>
+            </select>
+
+            <button class="btn" onclick="getNextDay()">Predict Next Day</button>
+
+            <div id="result" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function getNextDay() {
+    let day = document.getElementById("daySelect").value;
+
+    if (day === "") {
+        document.getElementById("result").innerHTML = "Please choose a day!";
+        return;
+    }
+
+    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    let index = days.indexOf(day);
+    let nextIndex = (index + 1) % 7;
+
+    document.getElementById("result").innerHTML =
+        "🌟 Next Day: <br> <span style='font-size:26px;'>" + days[nextIndex] + "</span>";
+}
+
+    </script>
+</body>
+</html>
